@@ -5,77 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>תצוגת הדגמה — דוליטל</title>
     <style>
-      :root {
-        --lime: #d6f25c;
-        --moss: #3d6b16;
-        --charcoal: #1e2420;
-        --ink: #1a211c;
-        --muted: #4d5852;
-        --paper: #f3f0e8;
-        --card: #fffcf7;
-        --sand: #e4ddd0;
-        --warn: #8a5a12;
-      }
+      :root { --lime:#d6f25c; --moss:#3d6b16; --charcoal:#1e2420; --ink:#1a211c; --muted:#4d5852; --paper:#f3f0e8; --card:#fffcf7; --sand:#e4ddd0; --warn:#8a5a12; }
       * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        color: var(--ink);
-        background: radial-gradient(circle at 100% 0%, rgb(214 242 92 / 0.35), transparent 28rem), var(--paper);
-        font-family: "Arial Hebrew", Arial, sans-serif;
-      }
-      .banner { background: var(--charcoal); color: white; text-align: center; padding: 0.7rem 1rem; font-weight: 800; }
-      header, main { width: min(720px, calc(100% - 1.5rem)); margin-inline: auto; }
-      .top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 0; }
-      .mark { display: flex; align-items: center; gap: 0.7rem; color: var(--charcoal); font-weight: 800; }
-      .paw { width: 2.7rem; height: 2.7rem; border-radius: 0.9rem; background: var(--lime); display: grid; place-items: center; }
-      nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; margin-bottom: 1rem; }
-      nav button, .btn {
-        min-height: 2.8rem; border: 0; border-radius: 999px; font: inherit; font-weight: 800; cursor: pointer;
-      }
-      nav button { background: transparent; color: var(--muted); }
-      nav button[aria-current="page"] { background: var(--charcoal); color: white; }
-      .btn-primary { background: var(--lime); color: var(--charcoal); padding: 0.7rem 1.1rem; }
-      .btn-ghost { background: white; border: 1px solid var(--sand); padding: 0.7rem 1.1rem; }
-      .card { background: var(--card); border: 1px solid var(--sand); border-radius: 1.6rem; padding: 1.1rem; box-shadow: 0 18px 50px rgb(30 36 32 / 0.05); }
-      h1, h2 { margin: 0; }
-      h1 { font-size: 1.8rem; line-height: 1.2; }
-      .muted { color: var(--muted); }
-      .score { font-size: 2.4rem; font-weight: 800; margin: 0.2rem 0; }
-      .bar { height: 0.8rem; background: var(--sand); border-radius: 999px; overflow: hidden; }
-      .bar span { display: block; height: 100%; background: var(--lime); }
-      .reward { background: var(--lime); border-radius: 1.4rem; padding: 1rem; margin-top: 0.8rem; }
-      .reward strong { display: block; font-size: 3rem; }
-      ol.board { list-style: none; padding: 0; margin: 0.4rem 0 0; display: grid; gap: 0.45rem; }
-      ol.board li { display: flex; justify-content: space-between; gap: 0.6rem; background: var(--card); border: 1px solid var(--sand); border-radius: 1rem; padding: 0.7rem 0.85rem; }
-      ol.board li.me { outline: 4px solid var(--lime); }
-      label.choice, .field { display: grid; gap: 0.35rem; margin: 0.6rem 0; font-weight: 700; }
-      input[type="text"], input[type="number"], input[type="datetime-local"] {
-        width: 100%; border: 1px solid var(--sand); border-radius: 1rem; padding: 0.75rem; font: inherit;
-      }
-      .steps { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.8rem; }
-      .steps span { padding: 0.25rem 0.6rem; border-radius: 999px; color: var(--muted); font-weight: 800; font-size: 0.85rem; }
-      .steps .on { background: var(--lime); color: var(--charcoal); }
-      .note { background: #f4e2c4; color: var(--warn); border-radius: 1rem; padding: 0.8rem; font-weight: 800; }
-      a { color: var(--moss); font-weight: 800; }
-      section { margin: 1rem 0 5rem; }
-      .row { display: flex; gap: 0.5rem; margin-top: 0.8rem; }
+      body { margin:0; color:var(--ink); background:radial-gradient(circle at 100% 0%, rgb(214 242 92 / .35), transparent 28rem), var(--paper); font-family:"Arial Hebrew", Arial, sans-serif; }
+      .banner { background:var(--charcoal); color:#fff; text-align:center; padding:.7rem 1rem; font-weight:800; }
+      header, main { width:min(720px, calc(100% - 1.5rem)); margin-inline:auto; }
+      .top { display:flex; justify-content:space-between; align-items:center; padding:1rem 0; }
+      nav { display:grid; grid-template-columns:1fr 1fr; gap:.4rem; margin-bottom:1rem; }
+      nav button, .btn { min-height:2.8rem; border:0; border-radius:999px; font:inherit; font-weight:800; cursor:pointer; }
+      nav button { background:transparent; color:var(--muted); }
+      nav button[aria-current="page"] { background:var(--charcoal); color:#fff; }
+      .btn-primary { background:var(--lime); color:var(--charcoal); padding:.6rem 1rem; }
+      .btn-ghost { background:#fff; border:1px solid var(--sand); }
+      .card { background:var(--card); border:1px solid var(--sand); border-radius:1.4rem; padding:1rem; margin:.7rem 0; }
+      .next { outline:4px solid var(--lime); }
+      .picked { outline:4px solid var(--charcoal); }
+      h1,h2,h3 { margin:.2rem 0; }
+      .muted { color:var(--muted); }
+      .row { display:flex; gap:.4rem; flex-wrap:wrap; }
+      input[type="number"] { width:6rem; border:1px solid var(--sand); border-radius:.8rem; padding:.5rem; font:inherit; }
+      .note { background:#f4e2c4; color:var(--warn); border-radius:1rem; padding:.8rem; font-weight:800; }
+      a { color:var(--moss); font-weight:800; }
+      section { margin-bottom:5rem; }
     </style>
   </head>
   <body>
     <div class="banner">תצוגת הדגמה — הנתונים אינם אמיתיים</div>
     <header>
-      <div class="top">
-        <div class="mark">
-          <span class="paw" aria-hidden="true">
-            <svg viewBox="0 0 64 64" width="26" height="26"><circle cx="14" cy="22" r="7"/><circle cx="30" cy="12" r="7"/><circle cx="48" cy="20" r="7"/><circle cx="20" cy="36" r="5.5"/><path d="M34 30c8 0 18 7 18 16 0 8-6 12-14 12H28c-9 0-16-5-16-13 0-9 8-15 22-15z"/></svg>
-          </span>
-          <span>דוליטל<br /><small class="muted">מועדון המנצחים</small></span>
-        </div>
-        <strong id="who">נועה לוי</strong>
-      </div>
+      <div class="top"><strong>דוליטל</strong><strong id="who">נועה לוי</strong></div>
       <nav>
         <button type="button" id="tab-home" aria-current="page">הבית</button>
-        <button type="button" id="tab-owner">תחרות חדשה</button>
+        <button type="button" id="tab-owner">יעדים</button>
       </nav>
     </header>
     <main>
@@ -83,126 +43,81 @@
       <section id="owner" hidden></section>
     </main>
     <script>
-      const people = [
-        ["נועה לוי", "הדגמה — אשקלון פאור", 12],
-        ["איתי מזרחי", "הדגמה — אשקלון פאור", 16],
-        ["מאיה ברק", "הדגמה — אשקלון מרינה", 9],
-        ["דניאל אביב", "הדגמה — אשקלון מרינה", 4],
-        ["יעל שחר", "הדגמה — אשדוד", 7],
-        ["עומר חדד", "הדגמה — אשדוד", 1],
+      const score = 96;
+      const state = {
+        favorite: null,
+        award: "highest",
+        rows: [
+          { target: 150, budget: 100, gifts: ["גלידה לדוגמה"] },
+          { target: 300, budget: 250, gifts: ["ארוחת בוקר לדוגמה"] },
+          { target: 500, budget: 400, gifts: ["סדנה לדוגמה"] },
+        ],
+        savedNote: false,
+      };
+      const catalog = [
+        { name: "גלידה לדוגמה", price: 72, text: "חצי קילו. מתנה בדויה, בלי בית עסק אמיתי." },
+        { name: "ארוחת בוקר לדוגמה", price: 198, text: "ארוחה זוגית בדויה." },
+        { name: "סדנה לדוגמה", price: 280, text: "סדנה בדויה ליחיד." },
       ];
-      const target = 20;
-      const voucher = 150;
-      const me = people[0];
-      const product = "רויאל קנין סטרלייז 4 ק״ג";
-
-      const branches = {};
-      for (const [, store, units] of people) branches[store] = (branches[store] || 0) + units;
-      const branchRows = Object.entries(branches).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "he"));
-      const ranked = [...people].sort((a, b) => b[2] - a[2] || a[0].localeCompare(b[0], "he"));
 
       function home() {
-        const remain = target - me[2];
-        const pct = Math.round((me[2] / target) * 100);
-        const rows = ranked.map((row, index) => {
-          const mine = row[0] === me[0] ? " me" : "";
-          return `<li class="${mine.trim()}"><span><b>${index + 1}. ${row[0]}${mine ? " · אתם" : ""}</b><br><span class="muted">${row[1]}</span></span><b>${row[2]}<br><span class="muted">יחידות</span></b></li>`;
+        const next = state.rows.find((row) => score < row.target);
+        const favoriteRow = state.rows.find((row) => row.gifts.includes(state.favorite));
+        const favoriteLine = !state.favorite ? "" : favoriteRow && score < favoriteRow.target
+          ? `<p><b>עוד ${favoriteRow.target - score} נקודות לפרס שבחרת</b></p>`
+          : `<p><b>הגעת לפרס שבחרת. הנקודות נשארות.</b></p>`;
+        const cards = state.rows.map((row) => {
+          const gifts = catalog.filter((gift) => gift.price <= row.budget && row.gifts.includes(gift.name));
+          const items = gifts.map((gift) => {
+            const picked = state.favorite === gift.name;
+            return `<article class="${picked ? "picked" : ""} card"><h3>${gift.name}</h3><p>${gift.price} ₪ · ${gift.text}</p><button type="button" data-gift="${gift.name}">${picked ? "זה הפרס שבחרת" : "זה הפרס שאני רוצה"}</button><p class="muted">בחירה למוטיבציה. אין מימוש.</p></article>`;
+          }).join("");
+          return `<section class="card ${next && next.target === row.target ? "next" : ""}"><p class="muted">${next && next.target === row.target ? "היעד הבא" : "יעד"}</p><h2>${row.target} נקודות</h2><p><b>תקציב פרס ${row.budget} ₪</b></p><p>${score < row.target ? `עוד ${row.target - score} נקודות` : "היעד הושג. הנקודות נשארות."}</p>${items}<p>שובר בשווי ${row.budget} ₪. שובר כספי לדוגמה, לא חוויה שממומנת במלואה.</p></section>`;
         }).join("");
-        const stores = branchRows.map((row, index) => `<li><b>${index + 1}. ${row[0]}</b><b>${row[1]} יחידות</b></li>`).join("");
         document.getElementById("home").innerHTML = `
-          <article class="card">
-            <p class="muted"><b>מוכרים ${product}</b></p>
-            <h1>${product}</h1>
-            <p class="muted">יחידות שנמכרו</p>
-            <p class="score">נמכרו ${me[2]} מתוך ${target}</p>
-            <div class="bar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><span style="width:${pct}%"></span></div>
-            <p><b>עוד ${remain} יחידות לשובר בשווי ${voucher} ₪</b></p>
-            <div class="reward">
-              <span>שובר מתנה בשווי</span>
-              <strong>${voucher} ₪</strong>
-              <span>המתנה נבחרת דרך BUYME. לא כל מתנה זמינה בכל סכום.</span><br>
-              <a href="https://www.buyme.co.il/" target="_blank" rel="noreferrer">לאתר BUYME</a>
-            </div>
-          </article>
-          <h2 style="margin-top:1.2rem">דירוג עובדים</h2>
-          <ol class="board">${rows}</ol>
-          <h2 style="margin-top:1.2rem">דירוג סניפים</h2>
-          <ol class="board">${stores}</ol>
-          <p class="muted">אין פרס סניף בתחרות הזו. הדירוג כאן הוא להשוואה בלבד.</p>
-          <article class="card">
-            <h2>איך מכירה נספרת</h2>
-            <p>נספרות רק יחידות שאושרו מתוך הקבלה, למוצר של התחרות. קבלה שלא אושרה לא נספרת.</p>
-          </article>`;
+          <article class="card"><p class="muted">מוכרים רויאל קנין סטרלייז 4 ק״ג</p><h1>נמכרו ${score} נקודות</h1><p>היעדים 150, 300 ו־500 הם דוגמה בדיונית. נקודות אינן שקלים.</p>${favoriteLine}</article>
+          ${cards}
+          <h2>דירוג עובדים</h2>
+          <p>1. נועה לוי · 96 נקודות</p><p>2. איתי מזרחי · 80 נקודות</p>
+          <h2>דירוג סניפים</h2>
+          <p>1. הדגמה — אשקלון פאור</p><p class="muted">אין פרס סניף. הדירוג להשוואה בלבד.</p>`;
+        document.querySelectorAll("[data-gift]").forEach((button) => button.addEventListener("click", () => { state.favorite = button.dataset.gift; home(); }));
       }
 
-      const state = {
-        step: 0,
-        products: { [product]: true, "ג'וסי קט 18 ק״ג": false },
-        scope: "personal",
-        target: 20,
-        voucher: 150,
-        award: "highest",
-        saved: null,
-      };
-
       function owner() {
-        const labels = ["מה מוכרים?", "מה היעד?", "מה הפרס?", "מתי?", "בדיקה"];
-        const steps = labels.map((label, index) => `<span class="${index === state.step ? "on" : ""}">${label}</span>`).join("");
-        let body = "";
-        if (state.step === 0) {
-          body = `<h1>מה מוכרים?</h1>` + Object.keys(state.products).map((name) =>
-            `<label class="choice"><span><input type="checkbox" data-product="${name}" ${state.products[name] ? "checked" : ""}> ${name}</span></label>`
-          ).join("");
-        } else if (state.step === 1) {
-          body = `<h1>מה היעד?</h1>
-            <label class="choice"><span><input type="radio" name="scope" value="personal" ${state.scope === "personal" ? "checked" : ""}> יעד אישי</span></label>
-            <label class="choice"><span><input type="radio" name="scope" value="branch" ${state.scope === "branch" ? "checked" : ""}> יעד סניף</span></label>
-            <p class="muted">ברירת המחדל היא יחידות שנמכרו.</p>
-            <label class="field">כמה יחידות?<input id="target" type="number" min="1" value="${state.target}"></label>`;
-        } else if (state.step === 2) {
-          body = `<h1>מה הפרס?</h1>
-            <label class="field">שווי השובר בשקלים<input id="voucher" type="number" min="1" value="${state.voucher}"></label>
-            <label class="choice"><span><input type="radio" name="award" value="highest" ${state.award === "highest" ? "checked" : ""}> הפרס הגבוה ביותר שהושג</span></label>
-            <p class="note">הצעה לפיילוט, לא כלל שאושר.</p>
-            <label class="choice"><span><input type="radio" name="award" value="sum" ${state.award === "sum" ? "checked" : ""}> כל יעד מזכה בשובר שלו</span></label>`;
-        } else if (state.step === 3) {
-          body = `<h1>מתי?</h1>
-            <label class="field">התחלה<input type="datetime-local" value="2026-10-01T00:00"></label>
-            <label class="field">סיום<input type="datetime-local" value="2026-10-31T23:59"></label>`;
-        } else {
-          const count = state.scope === "personal" ? 6 : 3;
-          const who = state.scope === "personal" ? "עובדים" : "סניפים";
-          const total = count * Number(state.voucher);
-          const saved = state.saved ? `<p class="note">השמירה נשארת בדפדפן הזה בלבד. היא לא משותפת ולא נשמרת בשרת.</p>` : "";
-          body = `<h1>בדיקה לפני שמירה</h1>
-            <p><b>מוכרים:</b> ${Object.entries(state.products).filter((row) => row[1]).map((row) => row[0]).join(" · ")}</p>
-            <p><b>${state.scope === "personal" ? "יעד אישי" : "יעד סניף"}:</b> ${state.target} יחידות. אין יעד מהסוג השני.</p>
-            <p><b>לזוכה:</b> ${state.voucher} ₪. זה לא התקציב.</p>
-            <p><b>תקציב אפשרי:</b> ${count} ${who} × ${state.voucher} ₪ = ${total.toLocaleString("he-IL")} ₪.</p>
-            <p class="note">הפרס הגבוה ביותר שהושג. זו הצעה לפני השמירה, לא כלל שאושר.</p>
-            <p class="muted">המתנה נבחרת דרך BUYME. לא כל מתנה זמינה בכל סכום. אין כאן רכישה.</p>
-            ${saved}
-            <p class="muted">העלאת קבלה כבויה בתצוגה הזו.</p>
-            <input type="file" disabled aria-label="העלאת קבלה כבויה">`;
-        }
-        const back = state.step > 0 ? `<button type="button" class="btn btn-ghost" id="back">חזרה</button>` : "";
-        const forward = state.step < 4
-          ? `<button type="button" class="btn btn-primary" id="next">המשך</button>`
-          : `<button type="button" class="btn btn-primary" id="save">שמירה בדפדפן</button>`;
-        document.getElementById("owner").innerHTML = `<div class="card"><div class="steps">${steps}</div>${body}<div class="row">${back}${forward}</div></div>`;
-        document.getElementById("next")?.addEventListener("click", () => { read(); state.step += 1; owner(); });
-        document.getElementById("back")?.addEventListener("click", () => { state.step -= 1; owner(); });
-        document.getElementById("save")?.addEventListener("click", () => { read(); state.saved = true; owner(); });
-        document.querySelectorAll("[data-product]").forEach((input) => input.addEventListener("change", () => { state.products[input.dataset.product] = input.checked; }));
-        document.querySelectorAll('input[name="scope"]').forEach((input) => input.addEventListener("change", () => { state.scope = input.value; }));
-        document.querySelectorAll('input[name="award"]').forEach((input) => input.addEventListener("change", () => { state.award = input.value; }));
+        const rows = state.rows.map((row, index) => `
+          <div class="card">
+            <label>יעד, נקודות <input data-target="${index}" type="number" value="${row.target}"></label>
+            <label>תקציב ₪ <input data-budget="${index}" type="number" value="${row.budget}"></label>
+            <button type="button" data-remove="${index}" class="btn btn-ghost">הסרת יעד</button>
+          </div>`).join("");
+        const each = state.award === "highest" ? state.rows[state.rows.length - 1].budget : state.rows.reduce((sum, row) => sum + row.budget, 0);
+        const note = state.savedNote ? `<p class="note">השמירה נשארת בדפדפן הזה בלבד. היא לא משותפת ולא נשמרת בשרת.</p>` : "";
+        document.getElementById("owner").innerHTML = `
+          <h1>יעדים ותקציב</h1>
+          <p class="muted">נקודות אינן שקלים. המתנות שמופיעות לעובד הן רק אלה שהמחיר המלא שלהן נכנס לתקציב.</p>
+          ${rows}
+          <button type="button" id="add" class="btn btn-ghost">יעד נוסף</button>
+          <label class="card"><input type="radio" name="award" value="highest" ${state.award === "highest" ? "checked" : ""}> הפרס הגבוה ביותר שהושג. הצעה, לא כלל שאושר.</label>
+          <label class="card"><input type="radio" name="award" value="sum" ${state.award === "sum" ? "checked" : ""}> כל יעד מזכה בנפרד. גם זו בחירה בטופס.</label>
+          <p><b>לזוכה: ${each} ₪. זה לא התקציב.</b></p>
+          <p>עלות מרבית: 6 עובדים × ${each} ₪ = ${(6 * each).toLocaleString("he-IL")} ₪.</p>
+          ${note}
+          <p class="muted">העלאת קבלה כבויה בתצוגה הזו.</p>
+          <input type="file" disabled aria-label="העלאת קבלה כבויה">
+          <p><button type="button" id="save" class="btn btn-primary">שמירה בדפדפן</button></p>`;
+        document.getElementById("add").addEventListener("click", () => { read(); state.rows.push({ target: 0, budget: 0, gifts: [] }); owner(); });
+        document.getElementById("save").addEventListener("click", () => { read(); state.savedNote = true; owner(); });
+        document.querySelectorAll("[data-remove]").forEach((button) => button.addEventListener("click", () => {
+          if (state.rows.length === 1) return;
+          read(); state.rows.splice(Number(button.dataset.remove), 1); owner();
+        }));
+        document.querySelectorAll('input[name="award"]').forEach((input) => input.addEventListener("change", () => { state.award = input.value; owner(); }));
       }
 
       function read() {
-        const targetInput = document.getElementById("target");
-        const voucherInput = document.getElementById("voucher");
-        if (targetInput) state.target = Number(targetInput.value || state.target);
-        if (voucherInput) state.voucher = Number(voucherInput.value || state.voucher);
+        document.querySelectorAll("[data-target]").forEach((input) => { state.rows[input.dataset.target].target = Number(input.value); });
+        document.querySelectorAll("[data-budget]").forEach((input) => { state.rows[input.dataset.budget].budget = Number(input.value); });
       }
 
       function show(which) {
@@ -213,7 +128,6 @@
         document.getElementById("who").textContent = which === "home" ? "נועה לוי" : "בעלים";
         if (which === "owner") owner();
       }
-
       document.getElementById("tab-home").addEventListener("click", () => show("home"));
       document.getElementById("tab-owner").addEventListener("click", () => show("owner"));
       home();
