@@ -14,242 +14,209 @@
         --paper: #f3f0e8;
         --card: #fffcf7;
         --sand: #e4ddd0;
+        --warn: #8a5a12;
       }
       * { box-sizing: border-box; }
       body {
         margin: 0;
         color: var(--ink);
-        background:
-          radial-gradient(circle at 100% 0%, rgb(214 242 92 / 0.35), transparent 28rem),
-          var(--paper);
+        background: radial-gradient(circle at 100% 0%, rgb(214 242 92 / 0.35), transparent 28rem), var(--paper);
         font-family: "Arial Hebrew", Arial, sans-serif;
       }
-      header, main { width: min(960px, calc(100% - 2rem)); margin-inline: auto; }
-      .banner {
-        background: var(--charcoal);
-        color: white;
-        text-align: center;
-        padding: 0.75rem 1rem;
-        font-weight: 800;
-      }
-      .top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.25rem 0 0.5rem;
-      }
-      .mark { display: flex; align-items: center; gap: 0.7rem; font-weight: 800; }
-      .paw {
-        width: 2.6rem;
-        height: 2.6rem;
-        border-radius: 999px;
-        background: var(--lime);
-        color: var(--charcoal);
-        display: grid;
-        place-items: center;
-      }
-      .paw svg { width: 1.5rem; height: 1.5rem; }
-      nav { display: flex; flex-wrap: wrap; gap: 0.45rem; padding-bottom: 1rem; }
+      .banner { background: var(--charcoal); color: white; text-align: center; padding: 0.7rem 1rem; font-weight: 800; }
+      header, main { width: min(720px, calc(100% - 1.5rem)); margin-inline: auto; }
+      .top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 0; }
+      .mark { display: flex; align-items: center; gap: 0.7rem; color: var(--charcoal); font-weight: 800; }
+      .paw { width: 2.7rem; height: 2.7rem; border-radius: 0.9rem; background: var(--lime); display: grid; place-items: center; }
+      nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; margin-bottom: 1rem; }
       nav button, .btn {
-        border: 0;
-        border-radius: 999px;
-        min-height: 2.7rem;
-        padding: 0.55rem 0.95rem;
-        font-weight: 800;
-        background: white;
-        color: var(--charcoal);
-        cursor: pointer;
+        min-height: 2.8rem; border: 0; border-radius: 999px; font: inherit; font-weight: 800; cursor: pointer;
       }
-      nav button[aria-current="page"], .btn.primary { background: var(--lime); }
-      .btn:disabled, nav button:disabled { cursor: not-allowed; opacity: 0.55; }
-      .card {
-        background: var(--card);
-        border: 1px solid var(--sand);
-        border-radius: 1.6rem;
-        padding: 1.1rem 1.2rem;
-        margin-bottom: 0.9rem;
-      }
-      h1 { font-size: 1.8rem; margin: 0.2rem 0; }
-      h2 { margin: 0.2rem 0 0.4rem; }
-      p { line-height: 1.5; }
+      nav button { background: transparent; color: var(--muted); }
+      nav button[aria-current="page"] { background: var(--charcoal); color: white; }
+      .btn-primary { background: var(--lime); color: var(--charcoal); padding: 0.7rem 1.1rem; }
+      .btn-ghost { background: white; border: 1px solid var(--sand); padding: 0.7rem 1.1rem; }
+      .card { background: var(--card); border: 1px solid var(--sand); border-radius: 1.6rem; padding: 1.1rem; box-shadow: 0 18px 50px rgb(30 36 32 / 0.05); }
+      h1, h2 { margin: 0; }
+      h1 { font-size: 1.8rem; line-height: 1.2; }
       .muted { color: var(--muted); }
-      .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
-      .stat { font-size: 2rem; font-weight: 800; margin: 0.2rem 0; }
-      .row { display: flex; justify-content: space-between; gap: 0.7rem; align-items: center; padding: 0.7rem 0; border-top: 1px solid var(--sand); }
-      .pill { border-radius: 999px; background: var(--paper); padding: 0.2rem 0.55rem; font-size: 0.85rem; font-weight: 700; }
-      .notice { background: #fff6d8; border-radius: 1rem; padding: 0.75rem 0.9rem; font-weight: 700; }
-      select, input[type="file"] { width: 100%; border-radius: 1rem; border: 1px solid var(--sand); padding: 0.7rem; background: white; }
-      .meter { height: 0.7rem; background: var(--sand); border-radius: 999px; overflow: hidden; }
-      .meter span { display: block; height: 100%; background: var(--lime); width: 40%; }
-      @media (max-width: 700px) { .stats { grid-template-columns: 1fr; } }
+      .score { font-size: 2.4rem; font-weight: 800; margin: 0.2rem 0; }
+      .bar { height: 0.8rem; background: var(--sand); border-radius: 999px; overflow: hidden; }
+      .bar span { display: block; height: 100%; background: var(--lime); }
+      .reward { background: var(--lime); border-radius: 1.4rem; padding: 1rem; margin-top: 0.8rem; }
+      .reward strong { display: block; font-size: 3rem; }
+      ol.board { list-style: none; padding: 0; margin: 0.4rem 0 0; display: grid; gap: 0.45rem; }
+      ol.board li { display: flex; justify-content: space-between; gap: 0.6rem; background: var(--card); border: 1px solid var(--sand); border-radius: 1rem; padding: 0.7rem 0.85rem; }
+      ol.board li.me { outline: 4px solid var(--lime); }
+      label.choice, .field { display: grid; gap: 0.35rem; margin: 0.6rem 0; font-weight: 700; }
+      input[type="text"], input[type="number"], input[type="datetime-local"] {
+        width: 100%; border: 1px solid var(--sand); border-radius: 1rem; padding: 0.75rem; font: inherit;
+      }
+      .steps { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.8rem; }
+      .steps span { padding: 0.25rem 0.6rem; border-radius: 999px; color: var(--muted); font-weight: 800; font-size: 0.85rem; }
+      .steps .on { background: var(--lime); color: var(--charcoal); }
+      .note { background: #f4e2c4; color: var(--warn); border-radius: 1rem; padding: 0.8rem; font-weight: 800; }
+      a { color: var(--moss); font-weight: 800; }
+      section { margin: 1rem 0 5rem; }
+      .row { display: flex; gap: 0.5rem; margin-top: 0.8rem; }
     </style>
   </head>
   <body>
-    <p class="banner">תצוגת הדגמה — הנתונים אינם אמיתיים</p>
+    <div class="banner">תצוגת הדגמה — הנתונים אינם אמיתיים</div>
     <header>
       <div class="top">
         <div class="mark">
           <span class="paw" aria-hidden="true">
-            <svg viewBox="0 0 64 64">
-              <circle cx="14" cy="22" r="7" fill="currentColor"></circle>
-              <circle cx="30" cy="12" r="7" fill="currentColor"></circle>
-              <circle cx="48" cy="20" r="7" fill="currentColor"></circle>
-              <circle cx="20" cy="36" r="5.5" fill="currentColor"></circle>
-              <path d="M34 30c8 0 18 7 18 16 0 8-6 12-14 12H28c-9 0-16-5-16-13 0-9 8-15 22-15z" fill="currentColor"></path>
-            </svg>
+            <svg viewBox="0 0 64 64" width="26" height="26"><circle cx="14" cy="22" r="7"/><circle cx="30" cy="12" r="7"/><circle cx="48" cy="20" r="7"/><circle cx="20" cy="36" r="5.5"/><path d="M34 30c8 0 18 7 18 16 0 8-6 12-14 12H28c-9 0-16-5-16-13 0-9 8-15 22-15z"/></svg>
           </span>
-          <span>דוליטל<br />מועדון המנצחים</span>
+          <span>דוליטל<br /><small class="muted">מועדון המנצחים</small></span>
         </div>
-        <span class="pill">עובד תצוגה</span>
+        <strong id="who">נועה לוי</strong>
       </div>
       <nav>
-        <button type="button" data-screen="dashboard">לוח</button>
-        <button type="button" data-screen="competition">תחרות</button>
-        <button type="button" data-screen="leaderboard">דירוג</button>
-        <button type="button" data-screen="rewards">פרסים</button>
-        <button type="button" data-screen="manage">ניהול</button>
+        <button type="button" id="tab-home" aria-current="page">הבית</button>
+        <button type="button" id="tab-owner">תחרות חדשה</button>
       </nav>
     </header>
-    <main id="app"></main>
+    <main>
+      <section id="home"></section>
+      <section id="owner" hidden></section>
+    </main>
     <script>
       const people = [
-        { name: "עובד תצוגה", store: "הדגמה תצוגה", score: 120 },
-        { name: "בדיקת תצוגה ב", store: "הדגמה שנייה", score: 40 },
-        { name: "בדיקת תצוגה ג", store: "הדגמה תצוגה", score: 40 },
+        ["נועה לוי", "הדגמה — אשקלון פאור", 12],
+        ["איתי מזרחי", "הדגמה — אשקלון פאור", 16],
+        ["מאיה ברק", "הדגמה — אשקלון מרינה", 9],
+        ["דניאל אביב", "הדגמה — אשקלון מרינה", 4],
+        ["יעל שחר", "הדגמה — אשדוד", 7],
+        ["עומר חדד", "הדגמה — אשדוד", 1],
       ];
-      const rewards = [
-        { name: "קפה לדוגמה", cost: 40, stock: 5 },
-        { name: "שובר לדוגמה", cost: 60, stock: 5 },
-        { name: "סוף שבוע לדוגמה", cost: 200, stock: 2 },
-      ];
-      const steps = [
-        { title: "סניפים", body: "הסניף בתצוגה הוא הדגמה תצוגה. זו לא רשימת הסניפים האמיתית." },
-        { title: "עובדים", body: "שלושת השמות כאן בדויים. אין כאן חשבונות, סיסמאות, או כניסה אמיתית." },
-        { title: "תחרות", body: "תחרות תצוגה פעילה לאוקטובר 2026. אישור אוטומטי כבוי, ואי אפשר להדליק אותו במסך הזה." },
-        { title: "קבלה", body: "העלאת קבלה כבויה. אין כאן קובץ, אין זיהוי תווים, ואין נקודות חדשות." },
-      ];
-      const state = { screen: "dashboard", balance: 80, requests: [], store: "all", step: 0, notice: "" };
+      const target = 20;
+      const voucher = 150;
+      const me = people[0];
+      const product = "רויאל קנין סטרלייז 4 ק״ג";
 
-      function ranks() {
-        const sorted = [...people].sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, "he"));
-        let last = null;
-        let rank = 0;
-        return sorted.map((person, index) => {
-          if (person.score !== last) rank = index + 1;
-          last = person.score;
-          return { ...person, rank };
-        });
-      }
+      const branches = {};
+      for (const [, store, units] of people) branches[store] = (branches[store] || 0) + units;
+      const branchRows = Object.entries(branches).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "he"));
+      const ranked = [...people].sort((a, b) => b[2] - a[2] || a[0].localeCompare(b[0], "he"));
 
-      function esc(value) {
-        return String(value).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
-      }
-
-      function render() {
-        const root = document.querySelector("#app");
-        const ranked = ranks();
-        const me = ranked.find((person) => person.name === "עובד תצוגה");
-        const visible = state.store === "all" ? ranked : ranked.filter((person) => person.store === state.store);
-        const next = rewards.find((reward) => reward.cost > state.balance);
-        let body = "";
-        if (state.screen === "dashboard") {
-          body = `
-            <article class="card">
-              <p class="muted">הדגמה תצוגה</p>
-              <h1>שלום, עובד תצוגה</h1>
-              <p>ניקוד התחרות ונקודות הפרסים נפרדים. כל מספר במסך הזה בדוי, והלחיצות לא נשמרות.</p>
-            </article>
-            <article class="card">
-              <p class="muted">התחרות הנוכחית</p>
-              <h2>תחרות תצוגה</h2>
-              <p class="muted">1 באוקטובר 2026 עד 31 באוקטובר 2026</p>
-            </article>
-            <div class="stats">
-              <article class="card"><p class="muted">נקודות תחרות</p><p class="stat">${me.score}</p><p>מקום ${me.rank}</p></article>
-              <article class="card"><p class="muted">מקום בדירוג</p><p class="stat">${me.rank}</p><p>מתוך ${ranked.length}</p></article>
-              <article class="card"><p class="muted">נקודות לפרסים</p><p class="stat">${state.balance}</p><p>נשמרות רק בדפדפן הזה</p></article>
+      function home() {
+        const remain = target - me[2];
+        const pct = Math.round((me[2] / target) * 100);
+        const rows = ranked.map((row, index) => {
+          const mine = row[0] === me[0] ? " me" : "";
+          return `<li class="${mine.trim()}"><span><b>${index + 1}. ${row[0]}${mine ? " · אתם" : ""}</b><br><span class="muted">${row[1]}</span></span><b>${row[2]}<br><span class="muted">יחידות</span></b></li>`;
+        }).join("");
+        const stores = branchRows.map((row, index) => `<li><b>${index + 1}. ${row[0]}</b><b>${row[1]} יחידות</b></li>`).join("");
+        document.getElementById("home").innerHTML = `
+          <article class="card">
+            <p class="muted"><b>מוכרים ${product}</b></p>
+            <h1>${product}</h1>
+            <p class="muted">יחידות שנמכרו</p>
+            <p class="score">נמכרו ${me[2]} מתוך ${target}</p>
+            <div class="bar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><span style="width:${pct}%"></span></div>
+            <p><b>עוד ${remain} יחידות לשובר בשווי ${voucher} ₪</b></p>
+            <div class="reward">
+              <span>שובר מתנה בשווי</span>
+              <strong>${voucher} ₪</strong>
+              <span>המתנה נבחרת דרך BUYME. לא כל מתנה זמינה בכל סכום.</span><br>
+              <a href="https://www.buyme.co.il/" target="_blank" rel="noreferrer">לאתר BUYME</a>
             </div>
-            <article class="card">
-              <p>${next ? `הפרס הבא: ${esc(next.name)}, ${next.cost} נקודות` : "יש מספיק נקודות לכל פרס בדוי."}</p>
-              <div class="meter"><span style="width:${next ? Math.min(100, Math.round((state.balance / next.cost) * 100)) : 100}%"></span></div>
-            </article>`;
-        } else if (state.screen === "competition") {
-          body = `
-            <article class="card">
-              <h1>תחרות תצוגה</h1>
-              <p>נקודה אחת ליחידה. המכפיל ליחידות באריזה הוא 1 עד שהבעלים מגדיר אחרת. אישור אוטומטי כבוי.</p>
-              <p class="muted">שינוי החוקים במסך הזה לא משנה את היישום האמיתי.</p>
-            </article>`;
-        } else if (state.screen === "leaderboard") {
-          body = `
-            <article class="card">
-              <h1>דירוג</h1>
-              <label>סינון סניף, מדומה
-                <select id="store">
-                  <option value="all">כל הסניפים</option>
-                  <option value="הדגמה תצוגה">הדגמה תצוגה</option>
-                  <option value="הדגמה שנייה">הדגמה שנייה</option>
-                </select>
-              </label>
-              ${visible.map((person) => `<div class="row"><span>${esc(person.name)} · ${esc(person.store)}</span><strong>מקום ${person.rank} · ${person.score}</strong></div>`).join("")}
-              <p class="muted">המקום הוא המקום הכללי. הסינון רק מסתיר שורות.</p>
-            </article>`;
-        } else if (state.screen === "rewards") {
-          body = `
-            <article class="card">
-              <h1>פרסים</h1>
-              <p>יש ${state.balance} נקודות פנויות. בקשה כאן מורידה נקודות רק בתצוגה הזו.</p>
-              ${state.notice ? `<p class="notice">${esc(state.notice)}</p>` : ""}
-              ${rewards.map((reward, index) => {
-                const affordable = state.balance >= reward.cost;
-                return `<div class="row"><div><strong>${esc(reward.name)}</strong><p class="muted">${reward.cost} נקודות · דוגמה</p></div><button class="btn primary" type="button" data-reward="${index}" ${affordable ? "" : "disabled"}>${affordable ? "בקשה מדומה" : "חסרות נקודות"}</button></div>`;
-              }).join("")}
-              <h2>הבקשות שלי</h2>
-              ${state.requests.length ? state.requests.map((item) => `<p>${esc(item)}</p>`).join("") : `<p class="muted">עדיין אין בקשות מדומות.</p>`}
-            </article>`;
-        } else {
-          const step = steps[state.step];
-          body = `
-            <article class="card">
-              <p class="pill">סיור ניהול מדומה · ${state.step + 1} מתוך ${steps.length}</p>
-              <h1>${esc(step.title)}</h1>
-              <p>${esc(step.body)}</p>
-              ${state.step === 3 ? `<label>קובץ קבלה<input type="file" disabled /><p class="muted">הכפתור כבוי בכוונה.</p></label>` : ""}
-              <p>
-                <button class="btn" type="button" id="prev" ${state.step === 0 ? "disabled" : ""}>הקודם</button>
-                <button class="btn primary" type="button" id="next" ${state.step === steps.length - 1 ? "disabled" : ""}>הבא</button>
-              </p>
-              <p class="notice">זה אינו מסך הניהול האמיתי. אין שמירה, אין הרשאות, ואין חיבור לוואטסאפ או לזיהוי תווים.</p>
-            </article>`;
-        }
-        root.innerHTML = body;
-        document.querySelectorAll("nav button").forEach((button) => {
-          button.setAttribute("aria-current", button.dataset.screen === state.screen ? "page" : "false");
-        });
-        const store = document.querySelector("#store");
-        if (store) {
-          store.value = state.store;
-          store.addEventListener("change", () => { state.store = store.value; render(); });
-        }
-        document.querySelectorAll("[data-reward]").forEach((button) => {
-          button.addEventListener("click", () => {
-            const reward = rewards[Number(button.dataset.reward)];
-            if (state.balance < reward.cost) return;
-            state.balance -= reward.cost;
-            state.requests.unshift(`${reward.name} · בקשה מדומה`);
-            state.notice = "הבקשה מדומה. שום דבר לא נשמר ולא נשלח.";
-            render();
-          });
-        });
-        document.querySelector("#prev")?.addEventListener("click", () => { state.step -= 1; render(); });
-        document.querySelector("#next")?.addEventListener("click", () => { state.step += 1; render(); });
+          </article>
+          <h2 style="margin-top:1.2rem">דירוג עובדים</h2>
+          <ol class="board">${rows}</ol>
+          <h2 style="margin-top:1.2rem">דירוג סניפים</h2>
+          <ol class="board">${stores}</ol>
+          <p class="muted">אין פרס סניף בתחרות הזו. הדירוג כאן הוא להשוואה בלבד.</p>
+          <article class="card">
+            <h2>איך מכירה נספרת</h2>
+            <p>נספרות רק יחידות שאושרו מתוך הקבלה, למוצר של התחרות. קבלה שלא אושרה לא נספרת.</p>
+          </article>`;
       }
 
-      document.querySelectorAll("nav button").forEach((button) => {
-        button.addEventListener("click", () => { state.screen = button.dataset.screen; state.notice = ""; render(); });
-      });
-      render();
+      const state = {
+        step: 0,
+        products: { [product]: true, "ג'וסי קט 18 ק״ג": false },
+        scope: "personal",
+        target: 20,
+        voucher: 150,
+        award: "highest",
+        saved: null,
+      };
+
+      function owner() {
+        const labels = ["מה מוכרים?", "מה היעד?", "מה הפרס?", "מתי?", "בדיקה"];
+        const steps = labels.map((label, index) => `<span class="${index === state.step ? "on" : ""}">${label}</span>`).join("");
+        let body = "";
+        if (state.step === 0) {
+          body = `<h1>מה מוכרים?</h1>` + Object.keys(state.products).map((name) =>
+            `<label class="choice"><span><input type="checkbox" data-product="${name}" ${state.products[name] ? "checked" : ""}> ${name}</span></label>`
+          ).join("");
+        } else if (state.step === 1) {
+          body = `<h1>מה היעד?</h1>
+            <label class="choice"><span><input type="radio" name="scope" value="personal" ${state.scope === "personal" ? "checked" : ""}> יעד אישי</span></label>
+            <label class="choice"><span><input type="radio" name="scope" value="branch" ${state.scope === "branch" ? "checked" : ""}> יעד סניף</span></label>
+            <p class="muted">ברירת המחדל היא יחידות שנמכרו.</p>
+            <label class="field">כמה יחידות?<input id="target" type="number" min="1" value="${state.target}"></label>`;
+        } else if (state.step === 2) {
+          body = `<h1>מה הפרס?</h1>
+            <label class="field">שווי השובר בשקלים<input id="voucher" type="number" min="1" value="${state.voucher}"></label>
+            <label class="choice"><span><input type="radio" name="award" value="highest" ${state.award === "highest" ? "checked" : ""}> הפרס הגבוה ביותר שהושג</span></label>
+            <p class="note">הצעה לפיילוט, לא כלל שאושר.</p>
+            <label class="choice"><span><input type="radio" name="award" value="sum" ${state.award === "sum" ? "checked" : ""}> כל יעד מזכה בשובר שלו</span></label>`;
+        } else if (state.step === 3) {
+          body = `<h1>מתי?</h1>
+            <label class="field">התחלה<input type="datetime-local" value="2026-10-01T00:00"></label>
+            <label class="field">סיום<input type="datetime-local" value="2026-10-31T23:59"></label>`;
+        } else {
+          const count = state.scope === "personal" ? 6 : 3;
+          const who = state.scope === "personal" ? "עובדים" : "סניפים";
+          const total = count * Number(state.voucher);
+          const saved = state.saved ? `<p class="note">השמירה נשארת בדפדפן הזה בלבד. היא לא משותפת ולא נשמרת בשרת.</p>` : "";
+          body = `<h1>בדיקה לפני שמירה</h1>
+            <p><b>מוכרים:</b> ${Object.entries(state.products).filter((row) => row[1]).map((row) => row[0]).join(" · ")}</p>
+            <p><b>${state.scope === "personal" ? "יעד אישי" : "יעד סניף"}:</b> ${state.target} יחידות. אין יעד מהסוג השני.</p>
+            <p><b>לזוכה:</b> ${state.voucher} ₪. זה לא התקציב.</p>
+            <p><b>תקציב אפשרי:</b> ${count} ${who} × ${state.voucher} ₪ = ${total.toLocaleString("he-IL")} ₪.</p>
+            <p class="note">הפרס הגבוה ביותר שהושג. זו הצעה לפני השמירה, לא כלל שאושר.</p>
+            <p class="muted">המתנה נבחרת דרך BUYME. לא כל מתנה זמינה בכל סכום. אין כאן רכישה.</p>
+            ${saved}
+            <p class="muted">העלאת קבלה כבויה בתצוגה הזו.</p>
+            <input type="file" disabled aria-label="העלאת קבלה כבויה">`;
+        }
+        const back = state.step > 0 ? `<button type="button" class="btn btn-ghost" id="back">חזרה</button>` : "";
+        const forward = state.step < 4
+          ? `<button type="button" class="btn btn-primary" id="next">המשך</button>`
+          : `<button type="button" class="btn btn-primary" id="save">שמירה בדפדפן</button>`;
+        document.getElementById("owner").innerHTML = `<div class="card"><div class="steps">${steps}</div>${body}<div class="row">${back}${forward}</div></div>`;
+        document.getElementById("next")?.addEventListener("click", () => { read(); state.step += 1; owner(); });
+        document.getElementById("back")?.addEventListener("click", () => { state.step -= 1; owner(); });
+        document.getElementById("save")?.addEventListener("click", () => { read(); state.saved = true; owner(); });
+        document.querySelectorAll("[data-product]").forEach((input) => input.addEventListener("change", () => { state.products[input.dataset.product] = input.checked; }));
+        document.querySelectorAll('input[name="scope"]').forEach((input) => input.addEventListener("change", () => { state.scope = input.value; }));
+        document.querySelectorAll('input[name="award"]').forEach((input) => input.addEventListener("change", () => { state.award = input.value; }));
+      }
+
+      function read() {
+        const targetInput = document.getElementById("target");
+        const voucherInput = document.getElementById("voucher");
+        if (targetInput) state.target = Number(targetInput.value || state.target);
+        if (voucherInput) state.voucher = Number(voucherInput.value || state.voucher);
+      }
+
+      function show(which) {
+        document.getElementById("home").hidden = which !== "home";
+        document.getElementById("owner").hidden = which !== "owner";
+        document.getElementById("tab-home").setAttribute("aria-current", which === "home" ? "page" : "false");
+        document.getElementById("tab-owner").setAttribute("aria-current", which === "owner" ? "page" : "false");
+        document.getElementById("who").textContent = which === "home" ? "נועה לוי" : "בעלים";
+        if (which === "owner") owner();
+      }
+
+      document.getElementById("tab-home").addEventListener("click", () => show("home"));
+      document.getElementById("tab-owner").addEventListener("click", () => show("owner"));
+      home();
     </script>
   </body>
 </html>
